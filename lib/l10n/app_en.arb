@@ -1,0 +1,17 @@
+{
+    "hello": "Hello",
+
+    "my_name_is__template": "My name is <name>",
+    "i_am_old_and_tall__template": "I'm <age> old and stand <height> tall.",
+    "i_am_the_parties__template": "I'm the parties <role>",
+    "when_people_see_me_they_notice__template": "When people see me, they first notice my <distinctive features>",
+    "i_wear_and_move_with__template": "I wear <style> and move with <style>",
+    "i_am_from_where_people_are_known_for__template": "I'm from <home> where my people are known for <community>",
+    "i_dream_of__template": "I dream of <dream>",
+
+    "done": "Done",
+    "name": "Name",
+    "age": "Age",
+    "height": "Height",
+    "role": "Role"
+}
