@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-import 'character_creator/character_creator.dart';
+import 'character_creator/character_creator_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -37,6 +37,6 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    return const CharacterCreator();
+    return const CharacterCreatorScreen();
   }
 }

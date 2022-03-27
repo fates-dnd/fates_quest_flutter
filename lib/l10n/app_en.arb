@@ -10,6 +10,8 @@
     "i_dream_of__template": "I dream of <dream>",
 
     "done": "Done",
+    "create": "Create",
+
     "name": "Name",
     "age": "Age",
     "height": "Height",
@@ -30,5 +32,12 @@
     "magician_role": "Magician",
     "magician_description": "The Magician specializes in conjuration and psychic manipulation. From parlor tricks to elaborate deceptions, they are master illusionists, capable of twisting the mind.",
     "wizard_role": "Wizard",
-    "wizard_descripition": "The Wizard is a powerful spellcaster with a diverse set of magical abilities. At the height of their power, they can travel to other worlds and transcend their mortal selves."
+    "wizard_descripition": "The Wizard is a powerful spellcaster with a diverse set of magical abilities. At the height of their power, they can travel to other worlds and transcend their mortal selves.",
+
+    "distinctive_features": "Distinctive Features",
+    "wear_style": "Wear Style",
+    "move_style": "Move Style",
+    "home": "Home",
+    "community": "Community",
+    "dream": "Dream"
 }

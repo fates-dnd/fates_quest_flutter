@@ -1,11 +1,16 @@
+import 'package:fates_quest_flutter/character/character_screen.dart';
 import 'package:fates_quest_flutter/character_creator/age_and_height_form_screen.dart';
+import 'package:fates_quest_flutter/character_creator/distinctive_features_form_screen.dart';
+import 'package:fates_quest_flutter/character_creator/dream_form_screen.dart';
+import 'package:fates_quest_flutter/character_creator/home_and_community_form_screen.dart';
 import 'package:fates_quest_flutter/character_creator/name_form_screen.dart';
 import 'package:fates_quest_flutter/character_creator/role_form_screen.dart';
+import 'package:fates_quest_flutter/character_creator/wear_and_move_style_form_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-class CharacterCreator extends StatelessWidget {
-  const CharacterCreator({Key? key}) : super(key: key);
+class CharacterCreatorScreen extends StatelessWidget {
+  const CharacterCreatorScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -42,21 +47,34 @@ class CharacterCreator extends StatelessWidget {
           ),
           ConstructorRow(
             template: localization.when_people_see_me_they_notice__template,
-            onClick: () => {},
+            onClick: () => Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => const DistinctiveFeaturesFormScreen())),
           ),
           ConstructorRow(
             template: localization.i_wear_and_move_with__template,
-            onClick: () => {},
+            onClick: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => const WearAndMoveStyleFormScreen())),
           ),
           ConstructorRow(
             template:
                 localization.i_am_from_where_people_are_known_for__template,
-            onClick: () => {},
+            onClick: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => const HomeAndCommunityFormScreen())),
           ),
           ConstructorRow(
             template: localization.i_dream_of__template,
-            onClick: () => {},
+            onClick: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => const DreamFormScreen())),
           ),
+
+          ElevatedButton(
+            onPressed: () {
+              // TODO: submit result
+              Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => const CharacterScreen()));
+            },
+            child: Text(localization.create),
+            style: ElevatedButton.styleFrom(
+              minimumSize: const Size.fromHeight(50),
+            ),
+          ),
+          const SizedBox(height: 32)
         ],
       ),
     );
