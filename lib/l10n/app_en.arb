@@ -13,5 +13,22 @@
     "name": "Name",
     "age": "Age",
     "height": "Height",
-    "role": "Role"
+    "role": "Role",
+
+    "fighter_role": "Fighter",
+    "fighter_description": "The Fighter takes charge to meet challenges up close. They are weapon masters and martial artists, relying on their physical might to overcome foes.",
+    "invoker_role": "Invoker",
+    "invoker_description": "The Invoker is a battle mage, relying on the force of their ideals. They conjure protective wards, invigorate allies in a pinch, and smite enemies with radiance.",
+    "ranger_role": "Ranger",
+    "ranger_description": "The Ranger is an outlander, hunter, and skilled navigator, thriving on the fringes of civilization. They keep faithful pets and have a special bond with beasts.",
+    "naturalist_role": "Naturalist",
+    "naturalist_description": "The Naturalist channels their connection with nature to manipulate the elements, commune with animals, and even transform themselves into wild beasts.",
+    "doctor_role": "Doctor",
+    "doctor_description": "The Doctor is a magic scientist who tinkers with the forces of life and death. They reverse (or advance) the effects of damage, disease, and decay.",
+    "spy_role": "Spy",
+    "spy_description": "The Spy is a crafty agent of stealth and subterfuge. They are master assassins and experts in the use of magical gadgets, chemicals, traps, disguises, and forgeries.",
+    "magician_role": "Magician",
+    "magician_description": "The Magician specializes in conjuration and psychic manipulation. From parlor tricks to elaborate deceptions, they are master illusionists, capable of twisting the mind.",
+    "wizard_role": "Wizard",
+    "wizard_descripition": "The Wizard is a powerful spellcaster with a diverse set of magical abilities. At the height of their power, they can travel to other worlds and transcend their mortal selves."
 }

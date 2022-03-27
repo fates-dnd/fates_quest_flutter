@@ -1,3 +1,4 @@
+import 'package:fates_quest_flutter/data/role.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -22,10 +23,10 @@ class RoleFormScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(
-              height: 80,
+              height: 32,
             ),
             const Expanded(
-              child: SizedBox(),
+              child: RolesGrid(),
             ),
             ElevatedButton(
               onPressed: () {
@@ -38,6 +39,150 @@ class RoleFormScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 32),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class RolesGrid extends StatefulWidget {
+  const RolesGrid({Key? key}) : super(key: key);
+
+  @override
+  State<StatefulWidget> createState() => _RolesGridState();
+}
+
+class _RolesGridState extends State<RolesGrid> {
+  Role? selectedRole;
+
+  @override
+  Widget build(BuildContext context) {
+    final localization = AppLocalizations.of(context)!;
+
+    return ListView(
+      children: [
+        RoleSection(
+          title: localization.fighter_role,
+          description: localization.fighter_description,
+          isSelected: selectedRole == Role.fighter,
+          onClicked: () => setState(() {
+            selectedRole = Role.fighter;
+          }),
+        ),
+        const SizedBox(height: 16),
+        RoleSection(
+          title: localization.invoker_role,
+          description: localization.invoker_description,
+          isSelected: selectedRole == Role.invoker,
+          onClicked: () => setState(() {
+            selectedRole = Role.invoker;
+          }),
+        ),
+        const SizedBox(height: 16),
+        RoleSection(
+          title: localization.ranger_role,
+          description: localization.ranger_description,
+          isSelected: selectedRole == Role.ranger,
+          onClicked: () => setState(() {
+            selectedRole = Role.ranger;
+          }),
+        ),
+        const SizedBox(height: 16),
+        RoleSection(
+          title: localization.naturalist_role,
+          description: localization.naturalist_description,
+          isSelected: selectedRole == Role.naturalist,
+          onClicked: () => setState(() {
+            selectedRole = Role.naturalist;
+          }),
+        ),
+        const SizedBox(height: 16),
+        RoleSection(
+          title: localization.doctor_role,
+          description: localization.doctor_description,
+          isSelected: selectedRole == Role.doctor,
+          onClicked: () => setState(() {
+            selectedRole = Role.doctor;
+          }),
+        ),
+        const SizedBox(height: 16),
+        RoleSection(
+          title: localization.spy_role,
+          description: localization.spy_description,
+          isSelected: selectedRole == Role.spy,
+          onClicked: () => setState(() {
+            selectedRole = Role.spy;
+          }),
+        ),
+        const SizedBox(height: 16),
+        RoleSection(
+          title: localization.magician_role,
+          description: localization.magician_description,
+          isSelected: selectedRole == Role.magician,
+          onClicked: () => setState(() {
+            selectedRole = Role.magician;
+          }),
+        ),
+        const SizedBox(height: 16),
+        RoleSection(
+          title: localization.wizard_role,
+          description: localization.wizard_descripition,
+          isSelected: selectedRole == Role.wizard,
+          onClicked: () => setState(() {
+            selectedRole = Role.wizard;
+          }),
+        ),
+        const SizedBox(height: 16),
+      ],
+    );
+  }
+}
+
+class RoleSection extends StatelessWidget {
+  final String title;
+  final String description;
+  final bool isSelected;
+  final VoidCallback onClicked;
+
+  const RoleSection({
+    Key? key,
+    required this.title,
+    required this.description,
+    required this.isSelected,
+    required this.onClicked,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: onClicked,
+      child: Container(
+        padding: const EdgeInsets.all(8),
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(8),
+            border: isSelected
+                ? Border.all(
+                    color: Colors.blue,
+                    width: 2,
+                  )
+                : Border.all(
+                    width: 2,
+                  )),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              title,
+              style: const TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const SizedBox(
+              height: 8,
+            ),
+            Text(description),
           ],
         ),
       ),
