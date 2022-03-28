@@ -1,4 +1,5 @@
 {
+    "characters": "Characters",
     "hello": "Hello",
 
     "my_name_is__template": "My name is <name>",
@@ -11,6 +12,7 @@
 
     "done": "Done",
     "create": "Create",
+    "create_new_character": "New Character",
 
     "name": "Name",
     "age": "Age",
