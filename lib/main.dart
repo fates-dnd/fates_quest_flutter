@@ -1,9 +1,16 @@
+import 'package:fates_quest_flutter/data/role.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 import 'character_creator/character_creator_screen.dart';
+import 'data/character.dart';
 
-void main() {
+void main() async {
+  await Hive.initFlutter();
+  Hive.registerAdapter(RoleAdapter());
+  Hive.registerAdapter(CharacterAdapter());
+  
   runApp(const MyApp());
 }
 
