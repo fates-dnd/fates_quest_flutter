@@ -10,10 +10,14 @@ class CharacterBuilderModel extends ChangeNotifier {
   String? distinctiveFeatures;
   String? wearStyle;
   String? moveStyle;
+  String? home;
+  String? community;
   String? dream;
 
   void setName(String name) {
     this.name = name;
+
+    notifyListeners();
   }
 
   void setAge(String age) {
@@ -38,6 +42,14 @@ class CharacterBuilderModel extends ChangeNotifier {
 
   void setMoveStyle(String moveStyle) {
     this.moveStyle = moveStyle;
+  }
+
+  void setHome(String home) {
+    this.home = home;
+  }
+
+  void setCommunity(String community) {
+    this.community = community;
   }
 
   void setDream(String dream) {

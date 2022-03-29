@@ -6,8 +6,10 @@ import 'package:fates_quest_flutter/character_creator/home_and_community_form_sc
 import 'package:fates_quest_flutter/character_creator/name_form_screen.dart';
 import 'package:fates_quest_flutter/character_creator/role_form_screen.dart';
 import 'package:fates_quest_flutter/character_creator/wear_and_move_style_form_screen.dart';
+import 'package:fates_quest_flutter/model/character_builder_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:provider/provider.dart';
 
 class CharacterCreatorScreen extends StatelessWidget {
   const CharacterCreatorScreen({Key? key}) : super(key: key);
@@ -30,44 +32,85 @@ class CharacterCreatorScreen extends StatelessWidget {
           const SizedBox(
             height: 32,
           ),
-          ConstructorRow(
-            template: localization.my_name_is__template,
-            onClick: () => Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => const NameFormScreen())),
+          Consumer<CharacterBuilderModel>(
+            builder: (context, builder, child) => ConstructorRow(
+              template: localization.my_name_is__template,
+              templateValues: {
+                "name": builder.name,
+              },
+              onClick: () => Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => const NameFormScreen())),
+            ),
           ),
-          ConstructorRow(
-            template: localization.i_am_old_and_tall__template,
-            onClick: () => Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => const AgeAndHeightFormScreen())),
+          Consumer<CharacterBuilderModel>(
+            builder: (context, builder, child) => ConstructorRow(
+              template: localization.i_am_old_and_tall__template,
+              templateValues: {
+                "age": builder.age,
+                "height": builder.height,
+              },
+              onClick: () => Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => const AgeAndHeightFormScreen())),
+            ),
           ),
-          ConstructorRow(
-            template: localization.i_am_the_parties__template,
-            onClick: () => Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => const RoleFormScreen())),
+          Consumer<CharacterBuilderModel>(
+            builder: (context, builder, child) => ConstructorRow(
+              template: localization.i_am_the_parties__template,
+              templateValues: {
+                "role": builder.role.toString(),
+              },
+              onClick: () => Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => const RoleFormScreen())),
+            ),
           ),
-          ConstructorRow(
-            template: localization.when_people_see_me_they_notice__template,
-            onClick: () => Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => const DistinctiveFeaturesFormScreen())),
+          Consumer<CharacterBuilderModel>(
+            builder: (context, builder, child) => ConstructorRow(
+              template: localization.when_people_see_me_they_notice__template,
+              templateValues: {
+                "distinctive features": builder.distinctiveFeatures
+              },
+              onClick: () => Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => const DistinctiveFeaturesFormScreen())),
+            ),
           ),
-          ConstructorRow(
-            template: localization.i_wear_and_move_with__template,
-            onClick: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => const WearAndMoveStyleFormScreen())),
+          Consumer<CharacterBuilderModel>(
+            builder: (context, builder, child) => ConstructorRow(
+              template: localization.i_wear_and_move_with__template,
+              templateValues: {
+                "wear style": builder.wearStyle,
+                "move style": builder.moveStyle
+              },
+              onClick: () => Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => const WearAndMoveStyleFormScreen())),
+            ),
           ),
-          ConstructorRow(
-            template:
-                localization.i_am_from_where_people_are_known_for__template,
-            onClick: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => const HomeAndCommunityFormScreen())),
+          Consumer<CharacterBuilderModel>(
+            builder: (context, builder, child) => ConstructorRow(
+              template:
+                  localization.i_am_from_where_people_are_known_for__template,
+              templateValues: {
+                "home": builder.home,
+                "community": builder.community
+              },
+              onClick: () => Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => const HomeAndCommunityFormScreen())),
+            ),
           ),
-          ConstructorRow(
-            template: localization.i_dream_of__template,
-            onClick: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => const DreamFormScreen())),
+          Consumer<CharacterBuilderModel>(
+            builder: (context, builder, child) => ConstructorRow(
+              template: localization.i_dream_of__template,
+              templateValues: {
+                "dream": builder.dream
+              },
+              onClick: () => Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => const DreamFormScreen())),
+            ),
           ),
-
           ElevatedButton(
             onPressed: () {
               // TODO: submit result
-              Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => const CharacterScreen()));
+              Navigator.of(context).pushReplacement(MaterialPageRoute(
+                  builder: (context) => const CharacterScreen()));
             },
             child: Text(localization.create),
             style: ElevatedButton.styleFrom(
@@ -83,11 +126,13 @@ class CharacterCreatorScreen extends StatelessWidget {
 
 class ConstructorRow extends StatelessWidget {
   final String template;
+  final Map<String, String?> templateValues;
   final VoidCallback onClick;
 
   const ConstructorRow({
     Key? key,
     required this.template,
+    required this.templateValues,
     required this.onClick,
   }) : super(key: key);
 
@@ -106,7 +151,11 @@ class ConstructorRow extends StatelessWidget {
         ),
         Row(
           children: [
-            Expanded(child: ConstructorText(template: template)),
+            Expanded(
+                child: ConstructorText(
+              template: template,
+              templateValues: templateValues,
+            )),
             const Icon(Icons.chevron_right),
           ],
         ),
@@ -120,8 +169,13 @@ class ConstructorRow extends StatelessWidget {
 
 class ConstructorText extends StatelessWidget {
   final String template;
+  final Map<String, String?> templateValues;
 
-  const ConstructorText({Key? key, required this.template}) : super(key: key);
+  const ConstructorText({
+    Key? key,
+    required this.template,
+    required this.templateValues,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -132,11 +186,12 @@ class ConstructorText extends StatelessWidget {
               text: TextSpan(
             children: splitTemplate(template).map((segment) {
               if (segment[0] == '<' && segment[segment.length - 1] == '>') {
+                final templateName = segment.substring(1, segment.length - 1);
                 return TextSpan(children: [
                   TextSpan(
-                    text: segment.substring(1, segment.length - 1),
-                    style: const TextStyle(
-                        color: Colors.black45,
+                    text: templateValues[templateName] ?? templateName,
+                    style: TextStyle(
+                        color: templateValues[templateName] == null ? Colors.black45 : Colors.black,
                         fontSize: 18,
                         decoration: TextDecoration.underline,
                         decorationColor: Colors.black),

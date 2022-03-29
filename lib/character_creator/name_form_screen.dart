@@ -1,8 +1,26 @@
+import 'package:fates_quest_flutter/model/character_builder_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:provider/provider.dart';
 
-class NameFormScreen extends StatelessWidget {
+class NameFormScreen extends StatefulWidget {
   const NameFormScreen({Key? key}) : super(key: key);
+
+  @override
+  State<StatefulWidget> createState() {
+    return _NameFormScreenState();
+  }
+}
+
+class _NameFormScreenState extends State<NameFormScreen> {
+
+  late TextEditingController textEditingController;
+
+  @override
+  void initState() {
+    textEditingController = TextEditingController();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -24,16 +42,17 @@ class NameFormScreen extends StatelessWidget {
             const SizedBox(
               height: 80,
             ),
-            const Expanded(
+            Expanded(
               child: TextField(
-                style: TextStyle(
+                controller: textEditingController,
+                style: const TextStyle(
                   fontSize: 18,
                 ),
               ),
             ),
             ElevatedButton(
               onPressed: () {
-                // TODO: submit result
+                Provider.of<CharacterBuilderModel>(context, listen: false).setName(textEditingController.text);
                 Navigator.of(context).pop();
               },
               child: Text(localization.done),

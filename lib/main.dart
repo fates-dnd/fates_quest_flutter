@@ -14,7 +14,7 @@ void main() async {
   Hive.registerAdapter(RoleAdapter());
   Hive.registerAdapter(CharacterAdapter());
 
-  final charactersBox = Hive.box<List<Character>>("characters");
+  final charactersBox = await Hive.openBox<List<Character>>("characters");
 
   runApp(MultiProvider(
     providers: [
