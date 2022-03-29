@@ -1,8 +1,8 @@
+import 'package:fates_quest_flutter/data/character.dart';
 import 'package:fates_quest_flutter/data/role.dart';
 import 'package:flutter/foundation.dart';
 
 class CharacterBuilderModel extends ChangeNotifier {
-
   String? name;
   String? age;
   String? height;
@@ -57,5 +57,20 @@ class CharacterBuilderModel extends ChangeNotifier {
     this.dream = dream;
 
     notifyListeners();
+  }
+
+  Character buildCharacter() {
+    final character = Character()
+      ..name = name
+      ..age = age
+      ..height = height
+      ..role = role
+      ..distinctiveFeatures = distinctiveFeatures
+      ..wearStyle = wearStyle
+      ..moveStyle = moveStyle
+      ..home = home
+      ..community = community
+      ..dream = dream;
+    return character;
   }
 }
