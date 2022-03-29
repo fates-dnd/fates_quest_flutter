@@ -6,6 +6,7 @@ import 'package:fates_quest_flutter/character_creator/home_and_community_form_sc
 import 'package:fates_quest_flutter/character_creator/name_form_screen.dart';
 import 'package:fates_quest_flutter/character_creator/role_form_screen.dart';
 import 'package:fates_quest_flutter/character_creator/wear_and_move_style_form_screen.dart';
+import 'package:fates_quest_flutter/data/role.dart';
 import 'package:fates_quest_flutter/model/character_builder_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -39,7 +40,7 @@ class CharacterCreatorScreen extends StatelessWidget {
                 "name": builder.name,
               },
               onClick: () => Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => const NameFormScreen())),
+                  builder: (context) => NameFormScreen(value: builder.name))),
             ),
           ),
           Consumer<CharacterBuilderModel>(
@@ -50,17 +51,22 @@ class CharacterCreatorScreen extends StatelessWidget {
                 "height": builder.height,
               },
               onClick: () => Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => const AgeAndHeightFormScreen())),
+                  builder: (context) => AgeAndHeightFormScreen(
+                        age: builder.age,
+                        height: builder.height,
+                      ))),
             ),
           ),
           Consumer<CharacterBuilderModel>(
             builder: (context, builder, child) => ConstructorRow(
               template: localization.i_am_the_parties__template,
               templateValues: {
-                "role": builder.role.toString(),
+                "role": builder.role?.getName(context),
               },
               onClick: () => Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => const RoleFormScreen())),
+                  builder: (context) => RoleFormScreen(
+                        role: builder.role,
+                      ))),
             ),
           ),
           Consumer<CharacterBuilderModel>(
@@ -70,7 +76,8 @@ class CharacterCreatorScreen extends StatelessWidget {
                 "distinctive features": builder.distinctiveFeatures
               },
               onClick: () => Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => const DistinctiveFeaturesFormScreen())),
+                  builder: (context) => DistinctiveFeaturesFormScreen(
+                      value: builder.distinctiveFeatures))),
             ),
           ),
           Consumer<CharacterBuilderModel>(
@@ -81,7 +88,10 @@ class CharacterCreatorScreen extends StatelessWidget {
                 "move style": builder.moveStyle
               },
               onClick: () => Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => const WearAndMoveStyleFormScreen())),
+                  builder: (context) => WearAndMoveStyleFormScreen(
+                        wearStyle: builder.wearStyle,
+                        moveStyle: builder.moveStyle,
+                      ))),
             ),
           ),
           Consumer<CharacterBuilderModel>(
@@ -93,17 +103,20 @@ class CharacterCreatorScreen extends StatelessWidget {
                 "community": builder.community
               },
               onClick: () => Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => const HomeAndCommunityFormScreen())),
+                  builder: (context) => HomeAndCommunityFormScreen(
+                        home: builder.home,
+                        community: builder.community,
+                      ))),
             ),
           ),
           Consumer<CharacterBuilderModel>(
             builder: (context, builder, child) => ConstructorRow(
               template: localization.i_dream_of__template,
-              templateValues: {
-                "dream": builder.dream
-              },
+              templateValues: {"dream": builder.dream},
               onClick: () => Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => const DreamFormScreen())),
+                  builder: (context) => DreamFormScreen(
+                        dream: builder.dream,
+                      ))),
             ),
           ),
           ElevatedButton(
@@ -191,10 +204,13 @@ class ConstructorText extends StatelessWidget {
                   TextSpan(
                     text: templateValues[templateName] ?? templateName,
                     style: TextStyle(
-                        color: templateValues[templateName] == null ? Colors.black45 : Colors.black,
-                        fontSize: 18,
-                        decoration: TextDecoration.underline,
-                        decorationColor: Colors.black),
+                      color: templateValues[templateName] == null
+                          ? Colors.black45
+                          : Colors.black,
+                      fontSize: 18,
+                      decoration: TextDecoration.underline,
+                      decorationColor: Colors.black,
+                    ),
                   ),
                   const TextSpan(
                       text: " ",

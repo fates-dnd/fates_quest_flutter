@@ -1,8 +1,28 @@
+import 'package:fates_quest_flutter/model/character_builder_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:provider/provider.dart';
 
-class DreamFormScreen extends StatelessWidget {
-  const DreamFormScreen({Key? key}) : super(key: key);
+class DreamFormScreen extends StatefulWidget {
+  final String? dream;
+
+  const DreamFormScreen({Key? key, this.dream}) : super(key: key);
+
+  @override
+  State createState() {
+    return _DreamFormScreenState();
+  }
+}
+
+class _DreamFormScreenState extends State<DreamFormScreen> {
+  late TextEditingController dreamController;
+
+  @override
+  void initState() {
+    dreamController = TextEditingController();
+    dreamController.text = widget.dream ?? "";
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -24,16 +44,17 @@ class DreamFormScreen extends StatelessWidget {
             const SizedBox(
               height: 80,
             ),
-            const Expanded(
+            Expanded(
               child: TextField(
-                style: TextStyle(
+                controller: dreamController,
+                style: const TextStyle(
                   fontSize: 18,
                 ),
               ),
             ),
             ElevatedButton(
               onPressed: () {
-                // TODO: submit result
+                Provider.of<CharacterBuilderModel>(context, listen: false).setDream(dreamController.text);
                 Navigator.of(context).pop();
               },
               child: Text(localization.done),

@@ -1,8 +1,29 @@
+import 'package:fates_quest_flutter/model/character_builder_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:provider/provider.dart';
 
-class DistinctiveFeaturesFormScreen extends StatelessWidget {
-  const DistinctiveFeaturesFormScreen({Key? key}) : super(key: key);
+class DistinctiveFeaturesFormScreen extends StatefulWidget {
+  final String? value;
+
+  const DistinctiveFeaturesFormScreen({Key? key, this.value}) : super(key: key);
+
+  @override
+  State<StatefulWidget> createState() {
+    return _DistinctiveFeaturesFormScreenState();
+  }
+}
+
+class _DistinctiveFeaturesFormScreenState
+    extends State<DistinctiveFeaturesFormScreen> {
+  late TextEditingController textController;
+
+  @override
+  void initState() {
+    textController = TextEditingController();
+    textController.text = widget.value ?? "";
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -24,16 +45,18 @@ class DistinctiveFeaturesFormScreen extends StatelessWidget {
             const SizedBox(
               height: 80,
             ),
-            const Expanded(
+            Expanded(
               child: TextField(
-                style: TextStyle(
+                controller: textController,
+                style: const TextStyle(
                   fontSize: 18,
                 ),
               ),
             ),
             ElevatedButton(
               onPressed: () {
-                // TODO: submit result
+                Provider.of<CharacterBuilderModel>(context, listen: false)
+                    .setDistinctiveFeatures(textController.text);
                 Navigator.of(context).pop();
               },
               child: Text(localization.done),

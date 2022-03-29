@@ -1,8 +1,33 @@
+import 'package:fates_quest_flutter/model/character_builder_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:provider/provider.dart';
 
-class AgeAndHeightFormScreen extends StatelessWidget {
-  const AgeAndHeightFormScreen({Key? key}) : super(key: key);
+class AgeAndHeightFormScreen extends StatefulWidget {
+  final String? age;
+  final String? height;
+
+  const AgeAndHeightFormScreen({Key? key, this.age, this.height}) : super(key: key);
+
+  @override
+  State<StatefulWidget> createState() {
+    return _AgeAndHeightFormScreenState();
+  }
+}
+
+class _AgeAndHeightFormScreenState extends State<AgeAndHeightFormScreen> {
+  late TextEditingController ageController;
+  late TextEditingController heightController;
+
+  @override
+  void initState() {
+    ageController = TextEditingController();
+    heightController = TextEditingController();
+
+    ageController.text = widget.age ?? "";
+    heightController.text = widget.height ?? "";
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,8 +53,9 @@ class AgeAndHeightFormScreen extends StatelessWidget {
                   const SizedBox(
                     height: 24,
                   ),
-                  const TextField(
-                    style: TextStyle(
+                  TextField(
+                    controller: ageController,
+                    style: const TextStyle(
                       fontSize: 18,
                     ),
                   ),
@@ -45,8 +71,9 @@ class AgeAndHeightFormScreen extends StatelessWidget {
                   const SizedBox(
                     height: 24,
                   ),
-                  const TextField(
-                    style: TextStyle(
+                  TextField(
+                    controller: heightController,
+                    style: const TextStyle(
                       fontSize: 18,
                     ),
                   ),
@@ -55,7 +82,11 @@ class AgeAndHeightFormScreen extends StatelessWidget {
             ),
             ElevatedButton(
               onPressed: () {
-                // TODO: submit result
+                Provider.of<CharacterBuilderModel>(context, listen: false)
+                    .setAgeAndHeight(
+                  ageController.text,
+                  heightController.text,
+                );
                 Navigator.of(context).pop();
               },
               child: Text(localization.done),

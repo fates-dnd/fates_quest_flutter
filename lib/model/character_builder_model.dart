@@ -20,39 +20,42 @@ class CharacterBuilderModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  void setAge(String age) {
+  void setAgeAndHeight(String age, String height) {
     this.age = age;
-  }
-
-  void setHeight(String height) {
     this.height = height;
+
+    notifyListeners();
   }
 
   void setRole(Role role) {
     this.role = role;
+
+    notifyListeners();
   }
 
   void setDistinctiveFeatures(String distinctiveFeatures) {
     this.distinctiveFeatures = distinctiveFeatures;
+
+    notifyListeners();
   }
 
-  void setWearStyle(String wearStyle) {
+  void setStyle(String wearStyle, String moveStyle) {
     this.wearStyle = wearStyle;
-  }
-
-  void setMoveStyle(String moveStyle) {
     this.moveStyle = moveStyle;
+
+    notifyListeners();
   }
 
-  void setHome(String home) {
+  void setHomeAndCommunity(String home, String community) {
     this.home = home;
-  }
-
-  void setCommunity(String community) {
     this.community = community;
+
+    notifyListeners();
   }
 
   void setDream(String dream) {
     this.dream = dream;
+
+    notifyListeners();
   }
 }

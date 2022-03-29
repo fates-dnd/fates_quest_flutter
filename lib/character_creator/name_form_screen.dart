@@ -4,7 +4,9 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 
 class NameFormScreen extends StatefulWidget {
-  const NameFormScreen({Key? key}) : super(key: key);
+  final String? value;
+
+  const NameFormScreen({Key? key, this.value}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
@@ -19,6 +21,7 @@ class _NameFormScreenState extends State<NameFormScreen> {
   @override
   void initState() {
     textEditingController = TextEditingController();
+    textEditingController.text = widget.value ?? "";
     super.initState();
   }
 

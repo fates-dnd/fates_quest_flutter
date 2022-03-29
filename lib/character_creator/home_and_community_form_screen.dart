@@ -1,8 +1,35 @@
+import 'package:fates_quest_flutter/model/character_builder_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:provider/provider.dart';
 
-class HomeAndCommunityFormScreen extends StatelessWidget {
-  const HomeAndCommunityFormScreen({Key? key}) : super(key: key);
+class HomeAndCommunityFormScreen extends StatefulWidget {
+  final String? home;
+  final String? community;
+
+  const HomeAndCommunityFormScreen({Key? key, this.home, this.community})
+      : super(key: key);
+
+  @override
+  State<StatefulWidget> createState() {
+    return _HomeAndCommunityFormScreenState();
+  }
+}
+
+class _HomeAndCommunityFormScreenState
+    extends State<HomeAndCommunityFormScreen> {
+  late TextEditingController homeController;
+  late TextEditingController communityController;
+
+  @override
+  void initState() {
+    homeController = TextEditingController();
+    communityController = TextEditingController();
+
+    homeController.text = widget.home ?? "";
+    communityController.text = widget.community ?? "";
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,8 +55,9 @@ class HomeAndCommunityFormScreen extends StatelessWidget {
                   const SizedBox(
                     height: 24,
                   ),
-                  const TextField(
-                    style: TextStyle(
+                  TextField(
+                    controller: homeController,
+                    style: const TextStyle(
                       fontSize: 18,
                     ),
                   ),
@@ -45,8 +73,9 @@ class HomeAndCommunityFormScreen extends StatelessWidget {
                   const SizedBox(
                     height: 24,
                   ),
-                  const TextField(
-                    style: TextStyle(
+                  TextField(
+                    controller: communityController,
+                    style: const TextStyle(
                       fontSize: 18,
                     ),
                   ),
@@ -55,7 +84,11 @@ class HomeAndCommunityFormScreen extends StatelessWidget {
             ),
             ElevatedButton(
               onPressed: () {
-                // TODO: submit result
+                Provider.of<CharacterBuilderModel>(context, listen: false)
+                    .setHomeAndCommunity(
+                  homeController.text,
+                  communityController.text,
+                );
                 Navigator.of(context).pop();
               },
               child: Text(localization.done),
