@@ -70,7 +70,9 @@ class CharacterBuilderModel extends ChangeNotifier {
       ..moveStyle = moveStyle
       ..home = home
       ..community = community
-      ..dream = dream;
+      ..dream = dream
+      ..hp = 10
+      ..ap = 10;
     return character;
   }
 }

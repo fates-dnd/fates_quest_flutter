@@ -8,6 +8,7 @@ import 'package:fates_quest_flutter/character_creator/role_form_screen.dart';
 import 'package:fates_quest_flutter/character_creator/wear_and_move_style_form_screen.dart';
 import 'package:fates_quest_flutter/data/role.dart';
 import 'package:fates_quest_flutter/model/character_builder_model.dart';
+import 'package:fates_quest_flutter/model/character_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
@@ -119,15 +120,20 @@ class CharacterCreatorScreen extends StatelessWidget {
                       ))),
             ),
           ),
-          ElevatedButton(
-            onPressed: () {
-              // TODO: submit result
-              Navigator.of(context).pushReplacement(MaterialPageRoute(
-                  builder: (context) => const CharacterScreen()));
-            },
-            child: Text(localization.create),
-            style: ElevatedButton.styleFrom(
-              minimumSize: const Size.fromHeight(50),
+          Consumer<CharacterBuilderModel>(
+            builder: (context, builder, child) => ElevatedButton(
+              onPressed: () {
+                final character = builder.buildCharacter();
+                Provider.of<CharacterModel>(context, listen: false)
+                    .addCharacter(character);
+                Navigator.of(context).pushReplacement(MaterialPageRoute(
+                    builder: (context) =>
+                        CharacterScreen(character: character)));
+              },
+              child: Text(localization.create),
+              style: ElevatedButton.styleFrom(
+                minimumSize: const Size.fromHeight(50),
+              ),
             ),
           ),
           const SizedBox(height: 32)

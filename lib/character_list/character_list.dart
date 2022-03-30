@@ -1,6 +1,11 @@
+import 'package:fates_quest_flutter/character/character_screen.dart';
 import 'package:fates_quest_flutter/character_creator/character_creator_screen.dart';
+import 'package:fates_quest_flutter/data/character.dart';
+import 'package:fates_quest_flutter/data/role.dart';
+import 'package:fates_quest_flutter/model/character_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:provider/provider.dart';
 
 class CharacterList extends StatelessWidget {
   const CharacterList({Key? key}) : super(key: key);
@@ -16,15 +21,21 @@ class CharacterList extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Expanded(child: ListView(
-              children: [
-                Text(
-                  localization.characters,
-                  style: const TextStyle(
-                    fontSize: 32,
+            Expanded(
+                child: Consumer<CharacterModel>(
+              builder: (context, builder, child) => ListView(
+                children: [
+                  Text(
+                    localization.characters,
+                    style: const TextStyle(
+                      fontSize: 32,
+                    ),
                   ),
-                ),
-              ],
+                  const SizedBox(height: 32),
+                  ...builder.characters
+                      .map((character) => CharacterRow(character: character)),
+                ],
+              ),
             )),
             ElevatedButton(
               onPressed: () {
@@ -46,11 +57,41 @@ class CharacterList extends StatelessWidget {
 }
 
 class CharacterRow extends StatelessWidget {
-  const CharacterRow({Key? key}) : super(key: key);
+  final Character character;
+
+  const CharacterRow({Key? key, required this.character}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
-    throw UnimplementedError();
+    return InkWell(
+      onTap: () => Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => CharacterScreen(
+                character: character,
+              ))),
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Row(
+          children: [
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    character.name ?? "",
+                    style: const TextStyle(
+                        fontSize: 24, fontWeight: FontWeight.bold),
+                  ),
+                  Text(
+                    character.role?.getName(context) ?? "",
+                    style: const TextStyle(fontSize: 16),
+                  )
+                ],
+              ),
+            ),
+            const Icon(Icons.chevron_right),
+          ],
+        ),
+      ),
+    );
   }
 }
