@@ -41,5 +41,11 @@
     "move_style": "Move Style",
     "home": "Home",
     "community": "Community",
-    "dream": "Dream"
+    "dream": "Dream",
+
+    "triumph": "Triumph",
+    "success": "Success",
+    "tough_choice": "Tough Choice",
+    "failure": "Failure",
+    "catastrophe": "Catastrophe"
 }
