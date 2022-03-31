@@ -1,3 +1,5 @@
+import 'package:fates_quest_flutter/data/ability.dart';
+import 'package:fates_quest_flutter/data/item.dart';
 import 'package:fates_quest_flutter/data/role.dart';
 import 'package:hive/hive.dart';
 
@@ -40,4 +42,10 @@ class Character extends HiveObject {
 
   @HiveField(11, defaultValue: 10)
   late int ap;
+
+  @HiveField(12)
+  late List<Item>? items;
+
+  @HiveField(13)
+  late List<Ability>? abilities;
 }

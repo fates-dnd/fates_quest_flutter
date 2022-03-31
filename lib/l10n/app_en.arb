@@ -47,5 +47,11 @@
     "success": "Success",
     "tough_choice": "Tough Choice",
     "failure": "Failure",
-    "catastrophe": "Catastrophe"
+    "catastrophe": "Catastrophe",
+
+    "add_new_item": "Add new item",
+    "add_new_ability": "Add new ability",
+
+    "items": "Items",
+    "abilities": "Abilities"
 }
