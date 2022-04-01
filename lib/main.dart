@@ -1,4 +1,7 @@
+import 'package:fates_quest_flutter/data/ability.dart';
+import 'package:fates_quest_flutter/data/item.dart';
 import 'package:fates_quest_flutter/data/role.dart';
+import 'package:fates_quest_flutter/data/roll_outcome.dart';
 import 'package:fates_quest_flutter/model/character_builder_model.dart';
 import 'package:fates_quest_flutter/model/character_model.dart';
 import 'package:flutter/material.dart';
@@ -13,6 +16,9 @@ void main() async {
   await Hive.initFlutter();
   Hive.registerAdapter(RoleAdapter());
   Hive.registerAdapter(CharacterAdapter());
+  Hive.registerAdapter(AbilityAdapter());
+  Hive.registerAdapter(ItemAdapter());
+  Hive.registerAdapter(RollOutcomeAdapter());
 
   final charactersBox = await Hive.openBox<List>("characters");
 

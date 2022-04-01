@@ -23,7 +23,7 @@ class CharacterList extends StatelessWidget {
           children: [
             Expanded(
                 child: Consumer<CharacterModel>(
-              builder: (context, builder, child) => ListView(
+              builder: (context, model, child) => ListView(
                 children: [
                   Text(
                     localization.characters,
@@ -32,7 +32,7 @@ class CharacterList extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 32),
-                  ...builder.characters
+                  ...model.characters
                       .map((character) => CharacterRow(character: character)),
                 ],
               ),

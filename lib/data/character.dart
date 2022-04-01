@@ -43,9 +43,9 @@ class Character extends HiveObject {
   @HiveField(11, defaultValue: 10)
   late int ap;
 
-  @HiveField(12)
-  late List<Item>? items;
+  @HiveField(12, defaultValue: [])
+  late List<Item> items;
 
-  @HiveField(13)
-  late List<Ability>? abilities;
+  @HiveField(13, defaultValue: [])
+  late List<Ability> abilities;
 }

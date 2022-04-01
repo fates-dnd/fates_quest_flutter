@@ -53,5 +53,9 @@
     "add_new_ability": "Add new ability",
 
     "items": "Items",
-    "abilities": "Abilities"
+    "abilities": "Abilities",
+
+    "description": "Description",
+    "add_roll_outcomes": "Add roll outcomes",
+    "ap_cost": "AP Cost"
 }
