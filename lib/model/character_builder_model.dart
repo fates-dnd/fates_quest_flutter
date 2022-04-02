@@ -73,7 +73,7 @@ class CharacterBuilderModel extends ChangeNotifier {
       ..dream = dream
       ..hp = 10
       ..ap = 10
-      ..items = []
+      ..items = {}
       ..abilities = [];
     return character;
   }

@@ -20,8 +20,8 @@ class CharacterModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  void addItemToCharacter(Character character, Item item) {
-    character.items.add(item);
+  void setItemAt(Character character, int index, Item item) {
+    character.items[index] = item;
     box.put("characters", characters);
 
     notifyListeners();

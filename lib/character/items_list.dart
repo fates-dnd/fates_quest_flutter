@@ -1,4 +1,3 @@
-import 'package:fates_quest_flutter/character/add_item_screen.dart';
 import 'package:fates_quest_flutter/data/character.dart';
 import 'package:fates_quest_flutter/data/item.dart';
 import 'package:flutter/material.dart';
@@ -15,40 +14,36 @@ class ItemList extends StatelessWidget {
 
     return Column(
       children: [
-        ElevatedButton(
-          onPressed: () => Navigator.of(context).push(MaterialPageRoute(
-              builder: (context) => AddItemScreen(
-                    character: character,
-                  ))),
-          child: Text(localization.add_new_item),
-          style: ElevatedButton.styleFrom(
-            minimumSize: const Size.fromHeight(50),
+        Expanded(
+          child: ListView.separated(
+            itemCount: 12,
+            separatorBuilder: (context, index) => const SizedBox(height: 16),
+            itemBuilder: (context, index) =>
+                ItemRow(item: character.items[index]),
           ),
         ),
-        Expanded(
-          child: ListView(
-              children:
-                  character.items.map((item) => ItemRow(item: item)).toList()),
-        )
+        const SizedBox(height: 32),
       ],
     );
   }
 }
 
 class ItemRow extends StatelessWidget {
-  final Item item;
+  final Item? item;
 
-  const ItemRow({Key? key, required this.item}) : super(key: key);
+  const ItemRow({Key? key, this.item}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(16),
+        border: Border.all(color: Colors.black),
       ),
+      padding: const EdgeInsets.all(16),
       child: Row(
         children: [
-          Text(item.name ?? ""),
+          Text(item?.name ?? ""),
         ],
       ),
     );
