@@ -2,15 +2,22 @@ import 'package:fates_quest_flutter/character/roll_outcomes_form.dart';
 import 'package:fates_quest_flutter/data/character.dart';
 import 'package:fates_quest_flutter/data/item.dart';
 import 'package:fates_quest_flutter/data/roll_outcome.dart';
+import 'package:fates_quest_flutter/model/character_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:provider/provider.dart';
 
 class AddItemScreen extends StatefulWidget {
   final Character character;
+  final int position;
   final Item? item;
 
-  const AddItemScreen({Key? key, required this.character, this.item})
-      : super(key: key);
+  const AddItemScreen({
+    Key? key,
+    required this.character,
+    required this.position,
+    this.item,
+  }) : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
@@ -100,14 +107,14 @@ class _AddItemScreenState extends State<AddItemScreen> {
             ),
             ElevatedButton(
               onPressed: () {
-                // Provider.of<CharacterModel>(context, listen: false)
-                //     .addItemToCharacter(
-                //   widget.character,
-                //   Item()
-                //     ..name = nameController.text
-                //     ..description = descriptionController.text
-                //     ..variableOutcome = rollOutcomes,
-                // );
+                Provider.of<CharacterModel>(context, listen: false).setItemAt(
+                  widget.character,
+                  widget.position,
+                  Item()
+                    ..name = nameController.text
+                    ..description = descriptionController.text
+                    ..variableOutcome = rollOutcomes,
+                );
 
                 Navigator.of(context).pop();
               },
