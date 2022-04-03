@@ -8,20 +8,25 @@ import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 
-class AddAbilityScreen extends StatefulWidget {
+class ManagerAbilityScreen extends StatefulWidget {
   final Character character;
+  final int? index;
   final Ability? ability;
 
-  const AddAbilityScreen({Key? key, required this.character, this.ability})
-      : super(key: key);
+  const ManagerAbilityScreen({
+    Key? key,
+    required this.character,
+    this.index,
+    this.ability,
+  }) : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
-    return _AddAbilityScreenState();
+    return _ManagerAbilityScreenState();
   }
 }
 
-class _AddAbilityScreenState extends State<AddAbilityScreen> {
+class _ManagerAbilityScreenState extends State<ManagerAbilityScreen> {
   late TextEditingController nameController;
   late TextEditingController apCostController;
   late TextEditingController descriptionController;
@@ -136,19 +141,35 @@ class _AddAbilityScreenState extends State<AddAbilityScreen> {
             ),
             ElevatedButton(
               onPressed: () {
-                Provider.of<CharacterModel>(context, listen: false)
-                    .addAbilityToCharacter(
-                  widget.character,
-                  Ability()
-                    ..name = nameController.text
-                    ..description = descriptionController.text
-                    ..cost = int.tryParse(apCostController.text)
-                    ..variableOutcome = rollOutcomes,
-                );
+                final index = widget.index;
+                final provider =
+                    Provider.of<CharacterModel>(context, listen: false);
+                final ability = Ability()
+                  ..name = nameController.text
+                  ..description = descriptionController.text
+                  ..cost = int.tryParse(apCostController.text)
+                  ..variableOutcome = rollOutcomes;
+
+                if (index == null) {
+                  provider.addAbilityToCharacter(
+                    widget.character,
+                    ability,
+                  );
+                } else {
+                  provider.setAbilityAt(
+                    widget.character,
+                    index,
+                    ability,
+                  );
+                }
 
                 Navigator.of(context).pop();
               },
-              child: Text(localization.add_new_item),
+              child: Text(
+                widget.index == null
+                    ? localization.add_new_item
+                    : localization.edit_ability,
+              ),
               style: ElevatedButton.styleFrom(
                 minimumSize: const Size.fromHeight(50),
               ),

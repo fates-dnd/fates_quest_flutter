@@ -34,6 +34,13 @@ class CharacterModel extends ChangeNotifier {
     notifyListeners();
   }
 
+  void setAbilityAt(Character character, int index, Ability ability) {
+    character.abilities[index] = ability;
+    box.put("characters", characters);
+
+    notifyListeners();
+  }
+
   Character getCharacterByName(String? name) {
     return characters.firstWhere((element) => element.name == name);
   }
