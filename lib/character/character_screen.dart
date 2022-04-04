@@ -1,8 +1,5 @@
-import 'dart:math';
-
 import 'package:fates_quest_flutter/character/abilities_list.dart';
 import 'package:fates_quest_flutter/character/items_list.dart';
-import 'package:fates_quest_flutter/character/roll_overlay.dart';
 import 'package:fates_quest_flutter/data/character.dart';
 import 'package:fates_quest_flutter/model/character_model.dart';
 import 'package:flutter/material.dart';
@@ -23,8 +20,6 @@ class CharacterScreen extends StatefulWidget {
 }
 
 class _CharacterScreenState extends State<CharacterScreen> {
-  OverlayEntry? rollOverlay;
-
   @override
   Widget build(BuildContext context) {
     final localization = AppLocalizations.of(context)!;
@@ -51,7 +46,15 @@ class _CharacterScreenState extends State<CharacterScreen> {
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      const SizedBox(height: 32),
+                      const SizedBox(height: 16),
+                      Row(
+                        children: [
+                          HpPin(character: widget.character),
+                          const SizedBox(width: 8),
+                          ApPin(character: widget.character),
+                        ],
+                      ),
+                      const SizedBox(height: 16),
                       TabBar(
                         labelColor: Colors.black,
                         labelStyle: const TextStyle(fontSize: 18),
@@ -85,27 +88,78 @@ class _CharacterScreenState extends State<CharacterScreen> {
           },
         ),
         floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            rollOverlay?.remove();
-
-            rollOverlay = OverlayEntry(builder: (context) {
-              final rollResult = 1 + Random().nextInt(20);
-              return Positioned(
-                  height: 60,
-                  bottom: 72,
-                  left: 32,
-                  child: Material(
-                    child: RollOverlay(roll: rollResult),
-                  ));
-            });
-            Overlay.of(context)?.insert(rollOverlay!);
-          },
+          onPressed: () {},
           child: SvgPicture.asset(
             "assets/d20.svg",
             color: Colors.white,
           ),
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      ),
+    );
+  }
+}
+
+class HpPin extends StatelessWidget {
+  final Character character;
+
+  const HpPin({
+    Key? key,
+    required this.character,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      borderRadius: BorderRadius.circular(8),
+      onTap: () {},
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(8),
+          border: Border.all(color: Colors.black),
+        ),
+        padding: const EdgeInsets.all(8),
+        child: Row(
+          children: [
+            const Icon(
+              Icons.favorite,
+              color: Colors.red,
+            ),
+            const SizedBox(width: 8),
+            Text("${character.hp}/${character.maxHp}"),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class ApPin extends StatelessWidget {
+  final Character character;
+
+  const ApPin({Key? key, required this.character}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      borderRadius: BorderRadius.circular(8),
+      onTap: () {},
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(8),
+          border: Border.all(color: Colors.black),
+        ),
+        padding: const EdgeInsets.all(8),
+        child: Row(
+          children: [
+            const Icon(
+              Icons.radio_button_checked,
+              color: Colors.blue,
+            ),
+            const SizedBox(width: 8),
+            Text("${character.ap}"),
+          ],
+        ),
       ),
     );
   }

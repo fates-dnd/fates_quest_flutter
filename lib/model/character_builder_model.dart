@@ -1,6 +1,7 @@
 import 'package:fates_quest_flutter/data/character.dart';
 import 'package:fates_quest_flutter/data/role.dart';
 import 'package:flutter/foundation.dart';
+import 'package:uuid/uuid.dart';
 
 class CharacterBuilderModel extends ChangeNotifier {
   String? name;
@@ -61,6 +62,7 @@ class CharacterBuilderModel extends ChangeNotifier {
 
   Character buildCharacter() {
     final character = Character()
+      ..id = const Uuid().v1()
       ..name = name
       ..age = age
       ..height = height
@@ -72,6 +74,7 @@ class CharacterBuilderModel extends ChangeNotifier {
       ..community = community
       ..dream = dream
       ..hp = 10
+      ..maxHp = 10
       ..ap = 10
       ..items = {}
       ..abilities = [];
