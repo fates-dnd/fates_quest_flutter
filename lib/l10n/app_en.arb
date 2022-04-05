@@ -58,5 +58,8 @@
 
     "description": "Description",
     "add_roll_outcomes": "Add roll outcomes",
-    "ap_cost": "AP Cost"
+    "ap_cost": "AP Cost",
+
+    "hp": "HP",
+    "ap": "AP"
 }

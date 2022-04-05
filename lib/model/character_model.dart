@@ -41,6 +41,13 @@ class CharacterModel extends ChangeNotifier {
     notifyListeners();
   }
 
+  void setHp(Character character, int hpValue) {
+    character.hp = hpValue;
+    box.put("characters", characters);
+
+    notifyListeners();
+  }
+
   Character getCharacterByName(String? name) {
     return characters.firstWhere((element) => element.name == name);
   }
