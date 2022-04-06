@@ -60,6 +60,9 @@
     "add_roll_outcomes": "Add roll outcomes",
     "ap_cost": "AP Cost",
 
-    "hp": "HP",
-    "ap": "AP"
+    "hp": "Hit Points",
+    "ap": "Action Points",
+
+    "earn_ap": "Earn Action Points",
+    "spend_ap": "Spend Action Points"
 }

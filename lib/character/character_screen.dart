@@ -1,4 +1,5 @@
 import 'package:fates_quest_flutter/character/abilities_list.dart';
+import 'package:fates_quest_flutter/character/ap_dialog.dart';
 import 'package:fates_quest_flutter/character/hp_dialog.dart';
 import 'package:fates_quest_flutter/character/items_list.dart';
 import 'package:fates_quest_flutter/data/character.dart';
@@ -153,7 +154,16 @@ class ApPin extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       borderRadius: BorderRadius.circular(8),
-      onTap: () {},
+      onTap: () => showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+              insetPadding: const EdgeInsets.all(0),
+              content: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  ApDialog(characterId: character.id),
+                ],
+              ))),
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8),

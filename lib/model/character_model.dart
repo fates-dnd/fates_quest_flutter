@@ -48,6 +48,23 @@ class CharacterModel extends ChangeNotifier {
     notifyListeners();
   }
 
+  void addAp(Character character, int apValue) {
+    character.ap = character.ap += apValue;
+    box.put("characters", characters);
+
+    notifyListeners();
+  }
+
+  void removeAp(Character character, int apValue) {
+    character.ap = character.ap -= apValue;
+    if (character.ap < 0) {
+      character.ap = 0;
+    }
+    box.put("characters", characters);
+
+    notifyListeners();
+  }
+
   Character getCharacterByName(String? name) {
     return characters.firstWhere((element) => element.name == name);
   }

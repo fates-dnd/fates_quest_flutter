@@ -21,7 +21,7 @@ class HpDialog extends StatelessWidget {
           return Column(
             children: [
               Padding(
-                padding: EdgeInsets.only(left: 16),
+                padding: const EdgeInsets.only(left: 16),
                 child: Row(
                   children: [
                     Expanded(
