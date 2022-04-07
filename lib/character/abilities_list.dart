@@ -1,8 +1,10 @@
 import 'package:fates_quest_flutter/character/manage_ability_screen.dart';
 import 'package:fates_quest_flutter/data/ability.dart';
 import 'package:fates_quest_flutter/data/character.dart';
+import 'package:fates_quest_flutter/model/character_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:provider/provider.dart';
 
 class AbilitiesList extends StatelessWidget {
   final Character character;
@@ -29,7 +31,7 @@ class AbilitiesList extends StatelessWidget {
             padding: const EdgeInsets.only(top: 16, bottom: 16),
             itemCount: character.abilities.length,
             separatorBuilder: (context, index) => const SizedBox(height: 16),
-            itemBuilder: (context, index) => AbilityRow(
+            itemBuilder: (context, index) => AbilityItem(
               character: character,
               index: index,
               ability: character.abilities[index],
@@ -41,12 +43,12 @@ class AbilitiesList extends StatelessWidget {
   }
 }
 
-class AbilityRow extends StatelessWidget {
+class AbilityItem extends StatelessWidget {
   final Character character;
   final int index;
   final Ability ability;
 
-  const AbilityRow(
+  const AbilityItem(
       {Key? key,
       required this.character,
       required this.index,
@@ -72,9 +74,24 @@ class AbilityRow extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              ability.name ?? "",
-              style: const TextStyle(fontSize: 24),
+            Row(
+              children: [
+                Expanded(
+                  child: Text(
+                    ability.name ?? "",
+                    style: const TextStyle(fontSize: 24),
+                  ),
+                ),
+                IconButton(
+                    onPressed: () {
+                      Provider.of<CharacterModel>(context, listen: false)
+                          .removeAbilityFromCharacter(
+                        character,
+                        ability,
+                      );
+                    },
+                    icon: const Icon(Icons.delete)),
+              ],
             ),
             const SizedBox(height: 24),
             Text(ability.description ?? "",

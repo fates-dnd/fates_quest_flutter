@@ -64,5 +64,7 @@
     "ap": "Action Points",
 
     "earn_ap": "Earn Action Points",
-    "spend_ap": "Spend Action Points"
+    "spend_ap": "Spend Action Points",
+
+    "use_ability": "Use"
 }

@@ -2,11 +2,11 @@ import 'package:fates_quest_flutter/character/abilities_list.dart';
 import 'package:fates_quest_flutter/character/ap_dialog.dart';
 import 'package:fates_quest_flutter/character/hp_dialog.dart';
 import 'package:fates_quest_flutter/character/items_list.dart';
+import 'package:fates_quest_flutter/character/roll_result_row.dart';
 import 'package:fates_quest_flutter/data/character.dart';
 import 'package:fates_quest_flutter/model/character_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 
 class CharacterScreen extends StatefulWidget {
@@ -85,18 +85,13 @@ class _CharacterScreenState extends State<CharacterScreen> {
                     ],
                   ),
                 )),
+                const SizedBox(height: 8),
+                const RollResultRow(),
+                const SizedBox(height: 16),
               ],
             );
           },
         ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {},
-          child: SvgPicture.asset(
-            "assets/d20.svg",
-            color: Colors.white,
-          ),
-        ),
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       ),
     );
   }

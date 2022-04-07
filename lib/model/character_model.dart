@@ -34,6 +34,13 @@ class CharacterModel extends ChangeNotifier {
     notifyListeners();
   }
 
+  void removeAbilityFromCharacter(Character character, Ability ability) {
+    character.abilities.remove(ability);
+    box.put("characters", characters);
+
+    notifyListeners();
+  }
+
   void setAbilityAt(Character character, int index, Ability ability) {
     character.abilities[index] = ability;
     box.put("characters", characters);
