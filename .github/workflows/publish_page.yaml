@@ -14,4 +14,5 @@ jobs:
       - run: flutter pub get
       - run: flutter packages pub run build_runner build
       - uses: bluefireteam/flutter-gh-pages@v7
-      - run: sed -i '/base href/d' index.html
+        with:
+          baseHref: /fates_quest_flutter/
