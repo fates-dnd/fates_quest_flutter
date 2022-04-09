@@ -12,6 +12,7 @@
 
     "done": "Done",
     "create": "Create",
+    "update": "Update",
     "create_new_character": "New Character",
 
     "name": "Name",

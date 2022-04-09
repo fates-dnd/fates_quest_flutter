@@ -1,11 +1,12 @@
 import 'package:fates_quest_flutter/character/character_screen.dart';
-import 'package:fates_quest_flutter/character_creator/age_and_height_form_screen.dart';
-import 'package:fates_quest_flutter/character_creator/distinctive_features_form_screen.dart';
-import 'package:fates_quest_flutter/character_creator/dream_form_screen.dart';
-import 'package:fates_quest_flutter/character_creator/home_and_community_form_screen.dart';
-import 'package:fates_quest_flutter/character_creator/name_form_screen.dart';
-import 'package:fates_quest_flutter/character_creator/role_form_screen.dart';
-import 'package:fates_quest_flutter/character_creator/wear_and_move_style_form_screen.dart';
+import 'package:fates_quest_flutter/character_manager/age_and_height_form_screen.dart';
+import 'package:fates_quest_flutter/character_manager/distinctive_features_form_screen.dart';
+import 'package:fates_quest_flutter/character_manager/dream_form_screen.dart';
+import 'package:fates_quest_flutter/character_manager/home_and_community_form_screen.dart';
+import 'package:fates_quest_flutter/character_manager/name_form_screen.dart';
+import 'package:fates_quest_flutter/character_manager/role_form_screen.dart';
+import 'package:fates_quest_flutter/character_manager/wear_and_move_style_form_screen.dart';
+import 'package:fates_quest_flutter/data/character.dart';
 import 'package:fates_quest_flutter/data/role.dart';
 import 'package:fates_quest_flutter/model/character_builder_model.dart';
 import 'package:fates_quest_flutter/model/character_model.dart';
@@ -13,8 +14,27 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 
-class CharacterCreatorScreen extends StatelessWidget {
-  const CharacterCreatorScreen({Key? key}) : super(key: key);
+class CharacterManagerScreen extends StatefulWidget {
+  final Character? character;
+
+  const CharacterManagerScreen({Key? key, this.character}) : super(key: key);
+
+  @override
+  State createState() => _CharacterManagerScreenState();
+}
+
+class _CharacterManagerScreenState extends State<CharacterManagerScreen> {
+  @override
+  void initState() {
+    final character = widget.character;
+    final provider = Provider.of<CharacterBuilderModel>(context, listen: false);
+    if (character != null) {
+      provider.setCharacter(character);
+    } else {
+      provider.clearInfo();
+    }
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -123,14 +143,25 @@ class CharacterCreatorScreen extends StatelessWidget {
           Consumer<CharacterBuilderModel>(
             builder: (context, builder, child) => ElevatedButton(
               onPressed: () {
-                final character = builder.buildCharacter();
-                Provider.of<CharacterModel>(context, listen: false)
-                    .addCharacter(character);
-                Navigator.of(context).pushReplacement(MaterialPageRoute(
-                    builder: (context) =>
-                        CharacterScreen(character: character)));
+                final inputCharacter = widget.character;
+                if (inputCharacter == null) {
+                  final character = builder.buildCharacter();
+                  Provider.of<CharacterModel>(context, listen: false)
+                      .addCharacter(character);
+                  Navigator.of(context).pushReplacement(MaterialPageRoute(
+                      builder: (context) =>
+                          CharacterScreen(character: character)));
+                } else {
+                  final character =
+                      builder.buildCharacter(id: inputCharacter.id);
+                  Provider.of<CharacterModel>(context, listen: false)
+                      .updateCharacter(character);
+                  Navigator.of(context).pop();
+                }
               },
-              child: Text(localization.create),
+              child: Text(widget.character == null
+                  ? localization.create
+                  : localization.update),
               style: ElevatedButton.styleFrom(
                 minimumSize: const Size.fromHeight(50),
               ),

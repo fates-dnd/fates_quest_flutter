@@ -1,5 +1,5 @@
 import 'package:fates_quest_flutter/character/character_screen.dart';
-import 'package:fates_quest_flutter/character_creator/character_creator_screen.dart';
+import 'package:fates_quest_flutter/character_manager/character_manager_screen.dart';
 import 'package:fates_quest_flutter/data/character.dart';
 import 'package:fates_quest_flutter/data/role.dart';
 import 'package:fates_quest_flutter/model/character_model.dart';
@@ -40,7 +40,7 @@ class CharacterList extends StatelessWidget {
             ElevatedButton(
               onPressed: () {
                 Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => const CharacterCreatorScreen(),
+                  builder: (context) => const CharacterManagerScreen(),
                 ));
               },
               child: Text(localization.create_new_character),

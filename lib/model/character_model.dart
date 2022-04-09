@@ -20,6 +20,16 @@ class CharacterModel extends ChangeNotifier {
     notifyListeners();
   }
 
+  void updateCharacter(Character character) {
+    final index =
+        characters.indexWhere((element) => element.id == character.id);
+    characters[index] = character;
+
+    box.put("characters", characters);
+
+    notifyListeners();
+  }
+
   void setItemAt(Character character, int index, Item item) {
     character.items[index] = item;
     box.put("characters", characters);
@@ -72,7 +82,7 @@ class CharacterModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  Character getCharacterByName(String? name) {
-    return characters.firstWhere((element) => element.name == name);
+  Character getCharacterById(String? id) {
+    return characters.firstWhere((element) => element.id == id);
   }
 }

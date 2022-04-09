@@ -3,6 +3,7 @@ import 'package:fates_quest_flutter/character/ap_dialog.dart';
 import 'package:fates_quest_flutter/character/hp_dialog.dart';
 import 'package:fates_quest_flutter/character/items_list.dart';
 import 'package:fates_quest_flutter/character/roll_result_row.dart';
+import 'package:fates_quest_flutter/character_manager/character_manager_screen.dart';
 import 'package:fates_quest_flutter/data/character.dart';
 import 'package:fates_quest_flutter/model/character_model.dart';
 import 'package:flutter/material.dart';
@@ -32,7 +33,7 @@ class _CharacterScreenState extends State<CharacterScreen> {
         appBar: AppBar(),
         body: Consumer<CharacterModel>(
           builder: (context, model, child) {
-            final character = model.getCharacterByName(widget.character.name);
+            final character = model.getCharacterById(widget.character.id);
             return Column(
               children: [
                 Expanded(
@@ -41,12 +42,26 @@ class _CharacterScreenState extends State<CharacterScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        character.name ?? "",
-                        style: const TextStyle(
-                          fontSize: 32,
-                          fontWeight: FontWeight.bold,
-                        ),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Text(
+                              character.name ?? "",
+                              style: const TextStyle(
+                                fontSize: 32,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                          IconButton(
+                            onPressed: () => Navigator.of(context).push(
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        CharacterManagerScreen(
+                                            character: character))),
+                            icon: const Icon(Icons.edit),
+                          )
+                        ],
                       ),
                       const SizedBox(height: 16),
                       Row(

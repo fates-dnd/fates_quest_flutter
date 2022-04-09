@@ -1,4 +1,6 @@
+import 'package:fates_quest_flutter/data/ability.dart';
 import 'package:fates_quest_flutter/data/character.dart';
+import 'package:fates_quest_flutter/data/item.dart';
 import 'package:fates_quest_flutter/data/role.dart';
 import 'package:flutter/foundation.dart';
 import 'package:uuid/uuid.dart';
@@ -14,6 +16,44 @@ class CharacterBuilderModel extends ChangeNotifier {
   String? home;
   String? community;
   String? dream;
+
+  int hp = 10;
+  int maxHp = 10;
+  int ap = 10;
+  Map<int, Item?> items = {};
+  List<Ability> abilities = [];
+
+  void setCharacter(Character character) {
+    name = character.name;
+    age = character.age;
+    height = character.height;
+    role = character.role;
+    distinctiveFeatures = character.distinctiveFeatures;
+    wearStyle = character.wearStyle;
+    moveStyle = character.moveStyle;
+    home = character.home;
+    community = character.community;
+    dream = character.dream;
+
+    hp = character.hp;
+    maxHp = character.maxHp;
+    ap = character.ap;
+    items = character.items;
+    abilities = character.abilities;
+  }
+
+  void clearInfo() {
+    name = null;
+    age = null;
+    height = null;
+    role = null;
+    distinctiveFeatures = null;
+    wearStyle = null;
+    moveStyle = null;
+    home = null;
+    community = null;
+    dream = null;
+  }
 
   void setName(String name) {
     this.name = name;
@@ -60,9 +100,9 @@ class CharacterBuilderModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  Character buildCharacter() {
+  Character buildCharacter({String? id}) {
     final character = Character()
-      ..id = const Uuid().v1()
+      ..id = id ?? const Uuid().v1()
       ..name = name
       ..age = age
       ..height = height
@@ -73,11 +113,11 @@ class CharacterBuilderModel extends ChangeNotifier {
       ..home = home
       ..community = community
       ..dream = dream
-      ..hp = 10
-      ..maxHp = 10
-      ..ap = 10
-      ..items = {}
-      ..abilities = [];
+      ..hp = hp
+      ..maxHp = maxHp
+      ..ap = ap
+      ..items = items
+      ..abilities = abilities;
     return character;
   }
 }

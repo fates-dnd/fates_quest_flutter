@@ -74,26 +74,7 @@ class _ManagerAbilityScreenState extends State<ManagerAbilityScreen> {
                     ),
                   ),
                   const SizedBox(
-                    height: 48,
-                  ),
-                  Text(
-                    localization.description,
-                    style: const TextStyle(
-                      fontSize: 32,
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 16,
-                  ),
-                  TextField(
-                    controller: descriptionController,
-                    maxLines: 2,
-                    style: const TextStyle(
-                      fontSize: 18,
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 24,
+                    height: 32,
                   ),
                   Row(
                     children: [
@@ -122,7 +103,26 @@ class _ManagerAbilityScreenState extends State<ManagerAbilityScreen> {
                       ),
                     ],
                   ),
-                  const SizedBox(height: 24),
+                  const SizedBox(height: 32),
+                  Text(
+                    localization.description,
+                    style: const TextStyle(
+                      fontSize: 32,
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 16,
+                  ),
+                  TextField(
+                    controller: descriptionController,
+                    maxLines: 2,
+                    style: const TextStyle(
+                      fontSize: 18,
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 24,
+                  ),
                   if (showRollOutcomes)
                     RollOutcomesForm(
                       onRollOutcomesChange: (outcomes) {

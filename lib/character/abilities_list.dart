@@ -76,6 +76,8 @@ class AbilityItem extends StatelessWidget {
           children: [
             Row(
               children: [
+                ApCost(apCost: ability.cost),
+                const SizedBox(width: 8),
                 Expanded(
                   child: Text(
                     ability.name ?? "",
@@ -98,6 +100,25 @@ class AbilityItem extends StatelessWidget {
                 style: const TextStyle(fontSize: 16)),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class ApCost extends StatelessWidget {
+  final int? apCost;
+
+  const ApCost({Key? key, required this.apCost}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 12),
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(16), color: Colors.grey),
+      child: Text(
+        apCost.toString(),
+        style: const TextStyle(fontSize: 14, color: Colors.white),
       ),
     );
   }
