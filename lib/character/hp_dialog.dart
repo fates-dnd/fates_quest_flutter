@@ -1,5 +1,5 @@
-import 'package:fates_quest_flutter/data/character.dart';
-import 'package:fates_quest_flutter/model/character_model.dart';
+import 'package:fates_for_quest/data/character.dart';
+import 'package:fates_for_quest/model/character_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';

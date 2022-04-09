@@ -1,4 +1,4 @@
-import 'package:fates_quest_flutter/model/character_builder_model.dart';
+import 'package:fates_for_quest/model/character_builder_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
@@ -7,7 +7,8 @@ class AgeAndHeightFormScreen extends StatefulWidget {
   final String? age;
   final String? height;
 
-  const AgeAndHeightFormScreen({Key? key, this.age, this.height}) : super(key: key);
+  const AgeAndHeightFormScreen({Key? key, this.age, this.height})
+      : super(key: key);
 
   @override
   State<StatefulWidget> createState() {

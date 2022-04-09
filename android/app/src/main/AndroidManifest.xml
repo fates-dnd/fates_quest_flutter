@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.fates_quest_flutter">
+    package="com.example.fates_for_quest">
    <application
-        android:label="fates_quest_flutter"
+        android:label="fates_for_quest"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

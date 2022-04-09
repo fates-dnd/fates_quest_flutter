@@ -1,4 +1,4 @@
-import 'package:fates_quest_flutter/model/character_builder_model.dart';
+import 'package:fates_for_quest/model/character_builder_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
@@ -15,7 +15,6 @@ class NameFormScreen extends StatefulWidget {
 }
 
 class _NameFormScreenState extends State<NameFormScreen> {
-
   late TextEditingController textEditingController;
 
   @override
@@ -55,7 +54,8 @@ class _NameFormScreenState extends State<NameFormScreen> {
             ),
             ElevatedButton(
               onPressed: () {
-                Provider.of<CharacterBuilderModel>(context, listen: false).setName(textEditingController.text);
+                Provider.of<CharacterBuilderModel>(context, listen: false)
+                    .setName(textEditingController.text);
                 Navigator.of(context).pop();
               },
               child: Text(localization.done),

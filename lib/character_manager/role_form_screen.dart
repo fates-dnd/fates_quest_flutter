@@ -1,5 +1,5 @@
-import 'package:fates_quest_flutter/data/role.dart';
-import 'package:fates_quest_flutter/model/character_builder_model.dart';
+import 'package:fates_for_quest/data/role.dart';
+import 'package:fates_for_quest/model/character_builder_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
@@ -79,7 +79,8 @@ class _RolesGridState extends State<RolesGrid> {
           isSelected: selectedRole == Role.fighter,
           onClicked: () => setState(() {
             selectedRole = Role.fighter;
-            Provider.of<CharacterBuilderModel>(context, listen: false).setRole(Role.fighter);
+            Provider.of<CharacterBuilderModel>(context, listen: false)
+                .setRole(Role.fighter);
           }),
         ),
         const SizedBox(height: 16),
@@ -89,7 +90,8 @@ class _RolesGridState extends State<RolesGrid> {
           isSelected: selectedRole == Role.invoker,
           onClicked: () => setState(() {
             selectedRole = Role.invoker;
-            Provider.of<CharacterBuilderModel>(context, listen: false).setRole(Role.invoker);
+            Provider.of<CharacterBuilderModel>(context, listen: false)
+                .setRole(Role.invoker);
           }),
         ),
         const SizedBox(height: 16),
@@ -99,7 +101,8 @@ class _RolesGridState extends State<RolesGrid> {
           isSelected: selectedRole == Role.ranger,
           onClicked: () => setState(() {
             selectedRole = Role.ranger;
-            Provider.of<CharacterBuilderModel>(context, listen: false).setRole(Role.ranger);
+            Provider.of<CharacterBuilderModel>(context, listen: false)
+                .setRole(Role.ranger);
           }),
         ),
         const SizedBox(height: 16),
@@ -109,7 +112,8 @@ class _RolesGridState extends State<RolesGrid> {
           isSelected: selectedRole == Role.naturalist,
           onClicked: () => setState(() {
             selectedRole = Role.naturalist;
-            Provider.of<CharacterBuilderModel>(context, listen: false).setRole(Role.naturalist);
+            Provider.of<CharacterBuilderModel>(context, listen: false)
+                .setRole(Role.naturalist);
           }),
         ),
         const SizedBox(height: 16),
@@ -119,7 +123,8 @@ class _RolesGridState extends State<RolesGrid> {
           isSelected: selectedRole == Role.doctor,
           onClicked: () => setState(() {
             selectedRole = Role.doctor;
-            Provider.of<CharacterBuilderModel>(context, listen: false).setRole(Role.doctor);
+            Provider.of<CharacterBuilderModel>(context, listen: false)
+                .setRole(Role.doctor);
           }),
         ),
         const SizedBox(height: 16),
@@ -129,7 +134,8 @@ class _RolesGridState extends State<RolesGrid> {
           isSelected: selectedRole == Role.spy,
           onClicked: () => setState(() {
             selectedRole = Role.spy;
-            Provider.of<CharacterBuilderModel>(context, listen: false).setRole(Role.spy);
+            Provider.of<CharacterBuilderModel>(context, listen: false)
+                .setRole(Role.spy);
           }),
         ),
         const SizedBox(height: 16),
@@ -139,7 +145,8 @@ class _RolesGridState extends State<RolesGrid> {
           isSelected: selectedRole == Role.magician,
           onClicked: () => setState(() {
             selectedRole = Role.magician;
-            Provider.of<CharacterBuilderModel>(context, listen: false).setRole(Role.magician);
+            Provider.of<CharacterBuilderModel>(context, listen: false)
+                .setRole(Role.magician);
           }),
         ),
         const SizedBox(height: 16),
@@ -149,7 +156,8 @@ class _RolesGridState extends State<RolesGrid> {
           isSelected: selectedRole == Role.wizard,
           onClicked: () => setState(() {
             selectedRole = Role.wizard;
-            Provider.of<CharacterBuilderModel>(context, listen: false).setRole(Role.wizard);
+            Provider.of<CharacterBuilderModel>(context, listen: false)
+                .setRole(Role.wizard);
           }),
         ),
         const SizedBox(height: 16),

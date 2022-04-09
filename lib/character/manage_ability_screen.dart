@@ -1,8 +1,8 @@
-import 'package:fates_quest_flutter/character/roll_outcomes_form.dart';
-import 'package:fates_quest_flutter/data/ability.dart';
-import 'package:fates_quest_flutter/data/character.dart';
-import 'package:fates_quest_flutter/data/roll_outcome.dart';
-import 'package:fates_quest_flutter/model/character_model.dart';
+import 'package:fates_for_quest/character/roll_outcomes_form.dart';
+import 'package:fates_for_quest/data/ability.dart';
+import 'package:fates_for_quest/data/character.dart';
+import 'package:fates_for_quest/data/roll_outcome.dart';
+import 'package:fates_for_quest/model/character_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';

@@ -1,6 +1,6 @@
-import 'package:fates_quest_flutter/data/ability.dart';
-import 'package:fates_quest_flutter/data/character.dart';
-import 'package:fates_quest_flutter/data/item.dart';
+import 'package:fates_for_quest/data/ability.dart';
+import 'package:fates_for_quest/data/character.dart';
+import 'package:fates_for_quest/data/item.dart';
 import 'package:flutter/foundation.dart';
 import 'package:hive/hive.dart';
 

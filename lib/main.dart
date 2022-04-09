@@ -1,9 +1,9 @@
-import 'package:fates_quest_flutter/data/ability.dart';
-import 'package:fates_quest_flutter/data/item.dart';
-import 'package:fates_quest_flutter/data/role.dart';
-import 'package:fates_quest_flutter/data/roll_outcome.dart';
-import 'package:fates_quest_flutter/model/character_builder_model.dart';
-import 'package:fates_quest_flutter/model/character_model.dart';
+import 'package:fates_for_quest/data/ability.dart';
+import 'package:fates_for_quest/data/item.dart';
+import 'package:fates_for_quest/data/role.dart';
+import 'package:fates_for_quest/data/roll_outcome.dart';
+import 'package:fates_for_quest/model/character_builder_model.dart';
+import 'package:fates_for_quest/model/character_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:hive_flutter/hive_flutter.dart';

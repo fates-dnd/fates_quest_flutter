@@ -1,6 +1,6 @@
-import 'package:fates_quest_flutter/character/add_item_screen.dart';
-import 'package:fates_quest_flutter/data/character.dart';
-import 'package:fates_quest_flutter/data/item.dart';
+import 'package:fates_for_quest/character/add_item_screen.dart';
+import 'package:fates_for_quest/data/character.dart';
+import 'package:fates_for_quest/data/item.dart';
 import 'package:flutter/material.dart';
 
 class ItemList extends StatelessWidget {

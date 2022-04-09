@@ -1,4 +1,4 @@
-import 'package:fates_quest_flutter/data/roll_outcome.dart';
+import 'package:fates_for_quest/data/roll_outcome.dart';
 import 'package:hive/hive.dart';
 
 part 'item.g.dart';

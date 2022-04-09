@@ -1,4 +1,4 @@
-package com.example.fates_quest_flutter
+package com.example.fates_for_quest
 
 import io.flutter.embedding.android.FlutterActivity
 

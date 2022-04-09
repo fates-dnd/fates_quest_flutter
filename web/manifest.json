@@ -1,6 +1,6 @@
 {
-    "name": "fates_quest_flutter",
-    "short_name": "fates_quest_flutter",
+    "name": "Fates for Quest",
+    "short_name": "Fates for Quest",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

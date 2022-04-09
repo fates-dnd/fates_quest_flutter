@@ -1,10 +1,11 @@
-import 'package:fates_quest_flutter/data/roll_outcome.dart';
+import 'package:fates_for_quest/data/roll_outcome.dart';
 import 'package:flutter/material.dart';
 
 class RollOutcomesForm extends StatefulWidget {
   final Function(Map<RollOutcome, String>) onRollOutcomesChange;
 
-  const RollOutcomesForm({Key? key, required this.onRollOutcomesChange}) : super(key: key);
+  const RollOutcomesForm({Key? key, required this.onRollOutcomesChange})
+      : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
