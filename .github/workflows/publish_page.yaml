@@ -15,4 +15,4 @@ jobs:
       - run: flutter packages pub run build_runner build
       - uses: bluefireteam/flutter-gh-pages@v7
         with:
-          baseHref: /fates_quest_flutter/
+          baseHref: /play-quest/
