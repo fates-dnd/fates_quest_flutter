@@ -18,45 +18,48 @@ class HpDialog extends StatelessWidget {
         builder: (context, model, child) {
           final character = model.characters
               .firstWhere((element) => element.id == characterId);
-          return Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(left: 16),
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: Text(
-                        localization.hp,
-                        style: const TextStyle(fontSize: 24),
+          return Container(
+            color: Colors.white,
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(left: 16),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Text(
+                          localization.hp,
+                          style: const TextStyle(fontSize: 24),
+                        ),
                       ),
-                    ),
-                    IconButton(
-                      onPressed: () => Navigator.pop(context),
-                      icon: const Icon(Icons.close),
-                    ),
-                  ],
+                      IconButton(
+                        onPressed: () => Navigator.pop(context),
+                        icon: const Icon(Icons.close),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-              const SizedBox(height: 8),
-              Row(
-                children: List.generate(
-                    5,
-                    (index) => HpButton(
-                          character: character,
-                          isActive: character.hp > index,
-                          hpValue: index + 1,
-                        )),
-              ),
-              Row(
-                children: List.generate(
-                    5,
-                    (index) => HpButton(
-                          character: character,
-                          isActive: character.hp > 5 + index,
-                          hpValue: index + 6,
-                        )),
-              ),
-            ],
+                const SizedBox(height: 8),
+                Row(
+                  children: List.generate(
+                      5,
+                      (index) => HpButton(
+                            character: character,
+                            isActive: character.hp > index,
+                            hpValue: index + 1,
+                          )),
+                ),
+                Row(
+                  children: List.generate(
+                      5,
+                      (index) => HpButton(
+                            character: character,
+                            isActive: character.hp > 5 + index,
+                            hpValue: index + 6,
+                          )),
+                ),
+              ],
+            ),
           );
         },
       ),

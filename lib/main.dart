@@ -43,13 +43,15 @@ class MyApp extends StatelessWidget {
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
       theme: ThemeData(
-          primarySwatch: Colors.blue,
-          backgroundColor: Colors.white,
-          appBarTheme: const AppBarTheme(
-            color: Colors.white,
-            iconTheme: IconThemeData(color: Colors.black),
-            elevation: 0,
-          )),
+        primarySwatch: Colors.blue,
+        backgroundColor: Colors.white,
+        appBarTheme: const AppBarTheme(
+          color: Colors.white,
+          iconTheme: IconThemeData(color: Colors.black),
+          elevation: 0,
+        ),
+        scaffoldBackgroundColor: Colors.white,
+      ),
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
